@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --color-vintage-cream: #FDF6E3;
+  --color-vintage-sepia: #D7CCC8;
+  --color-vintage-rust: #A0522D;
+  --color-vintage-brown: #5D4037;
+  --color-vintage-dark: #3E2723;
+  --color-vintage-gold: #D4AF37;
+
+  --font-serif: "Merriweather", serif;
+  --font-handwriting: "Dancing Script", cursive;
+
+  /* Change the naming to match v4 conventions if needed */
+  --animate-spin-slow: spin 20s linear infinite;
+  --animate-falling: falling linear infinite;
+
+  --background-image-paper-texture: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+}
+
+/* Move Keyframes here to ensure they are globally accessible */
+@keyframes falling {
+  0% {
+    transform: translateY(-10vh) rotate(0deg) translateX(0);
+    opacity: 0;
+  }
+  10% {
+     opacity: 0.8;
+  }
+  50% {
+     transform: translateY(50vh) rotate(180deg) translateX(40px);
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg) translateX(0);
+    opacity: 0;
+  }
+}
+
+@layer components {
+  .leaf {
+    /* Using 'fixed' ensures they stay in view relative to the screen */
+    @apply fixed top-[-50px] pointer-events-none animate-falling;
+    z-index: 10;
+    width: 40px;
+    height: auto;
+    /* This filter makes the leaf look like a dried autumn leaf */
+    filter: sepia(1) saturate(1.5) hue-rotate(-30deg);
+  }
+
+  .polaroid-container {
+    @apply bg-white p-3 shadow-lg transition-all duration-300 border border-vintage-sepia absolute z-30 hidden md:block;
+    width: 220px;
+  }
+
+  .polaroid-image {
+    @apply w-full h-48 object-cover filter sepia brightness-90 contrast-110;
+    background-size: cover;
+    background-position: center;
+  }
+}
