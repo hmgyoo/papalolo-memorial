@@ -132,7 +132,7 @@ function App() {
                 Your browser does not support the video tag.
               </video> */}
               <iframe
-                className={`w-full h-full object-cover filter sepia contrast-110 brightness-90 transition-opacity duration-700 ${
+                className={`w-full h-full object-cover contrast-110 brightness-90 transition-opacity duration-700 ${
                   isPlaying ? "opacity-100" : "opacity-0"
                 }`}
                 /* Notice the autoplay parameter below */
